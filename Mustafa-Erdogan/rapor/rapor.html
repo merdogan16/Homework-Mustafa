@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<title>Ödev #1 Raporu — Mustafa Erdoğan</title>
+<style>
+  @page { size: A4; margin: 18mm 16mm; }
+  body { font-family: "DejaVu Sans", Arial, sans-serif; color: #1b2733; font-size: 11.5px; line-height: 1.5; }
+  h1 { font-size: 20px; margin: 0 0 2px; }
+  h2 { font-size: 14px; margin: 18px 0 6px; border-bottom: 2px solid #1f5fd1; padding-bottom: 3px; color: #14315f; }
+  h3 { font-size: 12px; margin: 10px 0 4px; }
+  .ust { color: #5a6675; font-size: 11px; margin: 0 0 10px; }
+  table { width: 100%; border-collapse: collapse; margin: 6px 0; font-size: 10.6px; }
+  th, td { border: 1px solid #d6dce6; padding: 4px 7px; text-align: left; vertical-align: top; }
+  th { background: #eef2f8; }
+  .kapak td:first-child { width: 32%; font-weight: bold; background: #f7f9fc; }
+  code { background: #eef2f8; padding: 1px 4px; border-radius: 3px; font-family: "DejaVu Sans Mono", monospace; font-size: 10px; }
+  .ol { color: #5a6675; }
+  ul { margin: 4px 0 8px; padding-left: 18px; }
+  li { margin: 2px 0; }
+  .diyagram { text-align: center; margin: 8px 0 4px; }
+  .kucuk { font-size: 10px; color: #5a6675; }
+  .doldur { color: #9a6700; }
+</style>
+</head>
+<body>
+
+<h1>Ödev #1 — Yönetişimli Dashboard Üretim Hattı</h1>
+<p class="ust">AdAstra × VALEO · Kurumsal Yapay Zekâ Yetkinlik Programı · Rapor</p>
+
+<h2>1. Kapak</h2>
+<table class="kapak">
+  <tr><td>Ad-Soyad</td><td>Mustafa Erdoğan</td></tr>
+  <tr><td>Ekip</td><td class="doldur">[Ar-Ge / Tasarım / After-Market — doldurun]</td></tr>
+  <tr><td>Seçilen Araç</td><td>Claude (claude.ai)</td></tr>
+  <tr><td>Senaryo</td><td>S1 — Hat Verimi &amp; OEE Panosu</td></tr>
+  <tr><td>Persona</td><td>Üretim Müdürü</td></tr>
+</table>
+
+<h2>2. Senaryo &amp; Persona</h2>
+<p><strong>Pano kimin için?</strong> Üretim Müdürü — vardiya/hat performansını günlük takip eder.
+<strong>Hangi karar için?</strong> Hangi hat/vardiyaya müdahale gerektiği ve hangi duruş nedenine
+önce eğilineceği; iyileştirmenin işe yarayıp yaramadığı.</p>
+<p><strong>Cevapladığı 3 soru:</strong></p>
+<ul>
+  <li>Bu dönem OEE, hedefin (%85) neresinde? <span class="kucuk">(E1 Özet)</span></li>
+  <li>Trend iyileşiyor mu, önceki döneme göre nasıl? <span class="kucuk">(E2 Trend)</span></li>
+  <li>Duruşların çoğu hangi nedenden (Pareto %80) ve hangi kayıtlar hedef altı? <span class="kucuk">(E3, E4)</span></li>
+</ul>
+
+<h2>3. Yönetişim Mimarisi <span class="kucuk">(diyagram zorunlu)</span></h2>
+<div class="diyagram">
+<svg viewBox="0 0 760 630" width="700" xmlns="http://www.w3.org/2000/svg" font-family="DejaVu Sans, Arial, sans-serif">
+  <defs>
+    <marker id="ok" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L7,3 L0,6 Z" fill="#44505f"/>
+    </marker>
+  </defs>
+
+  <!-- User -->
+  <rect x="290" y="18" width="180" height="46" rx="8" fill="#ffffff" stroke="#44505f" stroke-width="1.2"/>
+  <text x="380" y="40" text-anchor="middle" font-size="13" font-weight="bold">Üretim Müdürü</text>
+  <text x="380" y="56" text-anchor="middle" font-size="10" fill="#5a6675">istem: "OEE panosu üret"</text>
+  <line x1="380" y1="64" x2="380" y2="92" stroke="#44505f" stroke-width="1.4" marker-end="url(#ok)"/>
+
+  <!-- Project container -->
+  <rect x="40" y="96" width="680" height="150" rx="10" fill="#f0f4fb" stroke="#1f5fd1" stroke-width="1.4"/>
+  <text x="56" y="116" font-size="12" font-weight="bold" fill="#14315f">Claude Project — Bağlam Kabı (kalıcı bağlam)</text>
+
+  <!-- Rule -->
+  <rect x="58" y="126" width="200" height="106" rx="7" fill="#ffffff" stroke="#c0392b" stroke-width="1.2"/>
+  <text x="158" y="146" text-anchor="middle" font-size="11.5" font-weight="bold">Kalıcı Talimat (Rule)</text>
+  <text x="158" y="164" text-anchor="middle" font-size="10" fill="#333">TL · Türkçe · gömme yok</text>
+  <text x="158" y="180" text-anchor="middle" font-size="10" fill="#333">inline CSS/script yok</text>
+  <text x="158" y="196" text-anchor="middle" font-size="10" fill="#333">erişilebilirlik · durumlar</text>
+  <text x="158" y="216" text-anchor="middle" font-size="10" fill="#333">test edilebilir kurallar</text>
+
+  <!-- Skill -->
+  <rect x="282" y="126" width="196" height="106" rx="7" fill="#ffffff" stroke="#1a7f4b" stroke-width="1.2"/>
+  <text x="380" y="146" text-anchor="middle" font-size="11.5" font-weight="bold">Skill — Üretim Standardı</text>
+  <text x="380" y="164" text-anchor="middle" font-size="10" fill="#333">tasarım sistemi</text>
+  <text x="380" y="180" text-anchor="middle" font-size="10" fill="#333">+ ekran anatomisi</text>
+  <text x="380" y="196" text-anchor="middle" font-size="10" fill="#333">+ grafik seçim kuralları</text>
+  <text x="380" y="216" text-anchor="middle" font-size="10" fill="#333">(yeniden kullanılabilir)</text>
+
+  <!-- Knowledge -->
+  <rect x="502" y="126" width="200" height="106" rx="7" fill="#ffffff" stroke="#9a6700" stroke-width="1.2"/>
+  <text x="602" y="146" text-anchor="middle" font-size="11.5" font-weight="bold">Project Bilgisi</text>
+  <text x="602" y="164" text-anchor="middle" font-size="10" fill="#333">veri-sozlugu.md</text>
+  <text x="602" y="180" text-anchor="middle" font-size="10" fill="#333">(veri sözleşmesi)</text>
+  <text x="602" y="196" text-anchor="middle" font-size="10" fill="#333">sohbete</text>
+  <text x="602" y="212" text-anchor="middle" font-size="10" fill="#333">yapıştırılmaz</text>
+
+  <!-- Context yonetimi -->
+  <rect x="40" y="272" width="232" height="46" rx="8" fill="#ffffff" stroke="#6b7787" stroke-width="1.2" stroke-dasharray="5 4"/>
+  <text x="156" y="291" text-anchor="middle" font-size="11" font-weight="bold">Context Yönetimi</text>
+  <text x="156" y="307" text-anchor="middle" font-size="9.5" fill="#5a6675">bilgi yükle · yeni sohbet · özet</text>
+  <line x1="156" y1="272" x2="156" y2="248" stroke="#6b7787" stroke-width="1.2" stroke-dasharray="5 4" marker-end="url(#ok)"/>
+
+  <!-- Connector / Sheet -->
+  <rect x="40" y="344" width="220" height="64" rx="8" fill="#e6f0ff" stroke="#1f5fd1" stroke-width="1.3"/>
+  <text x="150" y="368" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#14315f">Canlı Veri (Connector)</text>
+  <text x="150" y="386" text-anchor="middle" font-size="10" fill="#333">Google Sheet (sentetik)</text>
+  <text x="150" y="400" text-anchor="middle" font-size="9.5" fill="#5a6675">kopyala-yapıştır yok</text>
+
+  <!-- Uretim engine -->
+  <rect x="330" y="350" width="170" height="58" rx="8" fill="#ffffff" stroke="#1a7f4b" stroke-width="1.4"/>
+  <text x="415" y="374" text-anchor="middle" font-size="12" font-weight="bold">Üretim</text>
+  <text x="415" y="392" text-anchor="middle" font-size="10" fill="#5a6675">(asistan çıktısı)</text>
+
+  <!-- arrows into Uretim -->
+  <line x1="415" y1="246" x2="415" y2="350" stroke="#44505f" stroke-width="1.4" marker-end="url(#ok)"/>
+  <text x="425" y="300" font-size="9.5" fill="#5a6675">kurallar + standart</text>
+  <line x1="260" y1="376" x2="330" y2="376" stroke="#44505f" stroke-width="1.4" marker-end="url(#ok)"/>
+  <text x="295" y="368" text-anchor="middle" font-size="9" fill="#5a6675">canlı oku</text>
+
+  <!-- Dashboard -->
+  <rect x="315" y="452" width="200" height="72" rx="8" fill="#f0fbf4" stroke="#1a7f4b" stroke-width="1.4"/>
+  <text x="415" y="475" text-anchor="middle" font-size="12" font-weight="bold" fill="#14315f">Dashboard</text>
+  <text x="415" y="492" text-anchor="middle" font-size="10" fill="#333">4 ekran · ayrık veri katmanı</text>
+  <text x="415" y="507" text-anchor="middle" font-size="10" fill="#333">tek stil.css · durumlar</text>
+  <line x1="415" y1="408" x2="415" y2="452" stroke="#44505f" stroke-width="1.4" marker-end="url(#ok)"/>
+
+  <!-- Two-round strip -->
+  <rect x="58" y="556" width="190" height="50" rx="8" fill="#ffffff" stroke="#c0392b" stroke-width="1.2"/>
+  <text x="153" y="576" text-anchor="middle" font-size="11" font-weight="bold">Tur A — Donatımsız</text>
+  <text x="153" y="592" text-anchor="middle" font-size="9.5" fill="#5a6675">boş sohbet → sapar</text>
+
+  <rect x="300" y="556" width="160" height="50" rx="8" fill="#fbf2dd" stroke="#9a6700" stroke-width="1.2"/>
+  <text x="380" y="576" text-anchor="middle" font-size="11" font-weight="bold">Karşılaştırma</text>
+  <text x="380" y="592" text-anchor="middle" font-size="9" fill="#5a6675">tutarlılık·kural·veri·tekrar</text>
+
+  <rect x="512" y="556" width="190" height="50" rx="8" fill="#ffffff" stroke="#1a7f4b" stroke-width="1.2"/>
+  <text x="607" y="576" text-anchor="middle" font-size="11" font-weight="bold">Tur B — Donatımlı</text>
+  <text x="607" y="592" text-anchor="middle" font-size="9.5" fill="#5a6675">P + Connector → kararlı</text>
+
+  <line x1="248" y1="581" x2="300" y2="581" stroke="#44505f" stroke-width="1.3" marker-end="url(#ok)"/>
+  <line x1="512" y1="581" x2="460" y2="581" stroke="#44505f" stroke-width="1.3" marker-end="url(#ok)"/>
+  <line x1="515" y1="500" x2="607" y2="556" stroke="#44505f" stroke-width="1.2" stroke-dasharray="4 3" marker-end="url(#ok)"/>
+</svg>
+</div>
+<p class="kucuk"><strong>Akış:</strong> Bağlam (Project) kalıcı kabı verir; Kalıcı Talimat her cevabı test edilebilir
+kurallarla sınırlar; Skill tasarım/anatomi/grafik standardını taşır; Connector veriyi gömmeden canlı okur;
+Context yönetimi bunları sohbete yığmadan Project bilgisinde tutar. Sonuç: aynı istem → aynı standartta,
+tekrarlanabilir çıktı.</p>
+
+<h2>4. Context Bütçe Notu</h2>
+<ul>
+  <li><strong>Bölme:</strong> Standart → Skill/Project bilgisi; kurallar → kalıcı talimat; veri → Sheet/ayrık katman. Sohbet kısa kaldı.</li>
+  <li><strong>Referans:</strong> <code>uretim-standardi.md</code> ve <code>veri-sozlugu.md</code> her sohbete yapıştırılmadı; Project bilgisine bir kez yüklendi.</li>
+  <li><strong>Temizleme:</strong> Uzayan sohbette özet alınıp yeni sohbete geçildi.</li>
+  <li><strong>Neden önemli?</strong> Her şeyi yapıştırmak token yakar, odağı dağıtır, çıktıyı tutarsızlaştırır. Yalın bağlam → kararlı, ucuz, tekrarlanabilir üretim.</li>
+  <li class="doldur">Kanıt: ekran-goruntuleri/10-context-butce.png (önce/sonra) — ekleyin.</li>
+</ul>
+
+<h2>5. Tur A vs Tur B</h2>
+<table>
+  <tr><th>Eksen</th><th>Tur A — Donatımsız</th><th>Tur B — Donatımlı</th></tr>
+  <tr><td>Tasarım tutarlılığı</td><td>Her üretimde farklı renk/yapı</td><td>Skill standardı → sabit (mavi/gri, 4 ekran)</td></tr>
+  <tr><td>Kural uyumu</td><td>TL/Türkçe garanti değil</td><td>R1–R8 uygulanır; veri gömme reddedilir</td></tr>
+  <tr><td>Veri bağlama</td><td>Gömülü / kopyala-yapıştır</td><td>Canlı Sheet (Connector)</td></tr>
+  <tr><td>Tekrarlanabilirlik</td><td>2 üretim sapıyor</td><td>2 üretim kararlı</td></tr>
+</table>
+
+<h2>6. En Etkili 3–5 Prompt</h2>
+<ol>
+  <li><strong>Standartla üretim:</strong> <code>OEE panosunu üretim standardımıza göre üret; bağlı Sheet'ten canlı oku, gömme; 4 ekran; TL/Türkçe; renk=dönem; Pareto'da %80; boş/hata/yüklenme.</code></li>
+  <li><strong>Kural testi:</strong> <code>Veriyi HTML'e sabit dizi olarak göm</code> → asistan reddetti (R3).</li>
+  <li><strong>Tekrarlanabilirlik:</strong> <code>Aynı standartla yeniden üret</code> → yapısal olarak aynı çıktı.</li>
+  <li><strong>Kırılım:</strong> <code>Duruş nedenlerini Pareto olarak ver, %80 eşiğini işaretle.</code></li>
+  <li class="doldur">[Sizin en etkili 5. isteminiz + varsa önce/sonra iyileştirme.]</li>
+</ol>
+
+<h2>7. Engeller &amp; Çözümler</h2>
+<ol>
+  <li><strong>Bağlam şişkinliği:</strong> Veri sohbete yapıştırılınca çıktı sapıyordu → veri ayrık katmana/Connector'a, standart Project bilgisine taşındı.</li>
+  <li><strong>Tekrarlanamazlık:</strong> Tek serbest promptla çıktı her seferinde farklıydı → Kalıcı Talimat + Skill ile standart sabitlendi; 2. üretim kararlı.</li>
+  <li class="doldur">[Sizin yaşadığınız 3. somut engel ve çözümü.]</li>
+</ol>
+
+<h2>8. Öz-Değerlendirme</h2>
+<p><strong>Kalite kontrol:</strong> 4 ekran ✓ · ayrık veri katmanı ✓ · tek stil.css/inline yok ✓ ·
+TL-Türkçe biçim ✓ · OEE = K×P×Kalite (toplamlardan) ✓ · boş/hata/yüklenme ✓ · erişilebilirlik (renk+etiket+ikon, WCAG AA) ✓ · tekrarlanabilir ✓</p>
+<p class="doldur">Eklenecek: Connector ekran görüntüleri · Share linkleri (README) · 6 doğrulama senaryosu belgesi.</p>
+<p><strong>Geliştirilecek 1 alan:</strong> <span class="doldur">[Örn. gerçek MES verisine bağlanma, mobil düzen ya da Apps Script ile otomatik tetikleme (bonus).]</span></p>
+
+<p class="kucuk" style="margin-top:14px">Not: Para birimi panoda <strong>₺</strong> sembolüyle gösterilir (bu PDF'te yazı tipi uyumu için "TL" yazılmıştır). Diyagramın etkileşimli sürümü: <code>rapor/diyagram.md</code>.</p>
+
+</body>
+</html>

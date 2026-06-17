@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>VALEO · Hat Verimi & OEE Panosu</title>
+  <!-- Tek tasarim sistemi dosyasi (inline CSS yok) -->
+  <link rel="stylesheet" href="stil.css">
+</head>
+<body>
+  <div class="uygulama">
+
+    <!-- Baslik -->
+    <header class="baslik-cubugu">
+      <div class="baslik-sol">
+        <h1>Hat Verimi &amp; OEE Panosu</h1>
+        <p>VALEO Üretim · Persona: Üretim Müdürü · Senaryo S1</p>
+      </div>
+      <div class="baslik-sag">
+        Son güncelleme: <strong id="son-guncelleme">—</strong><br>
+        <span id="kapsam">—</span>
+      </div>
+    </header>
+
+    <!-- Filtreler -->
+    <div class="filtre-cubugu">
+      <div class="filtre">
+        <label for="f-hat">Hat</label>
+        <select id="f-hat"></select>
+      </div>
+      <div class="filtre">
+        <label for="f-vardiya">Vardiya</label>
+        <select id="f-vardiya"></select>
+      </div>
+      <div class="filtre">
+        <label for="f-aralik">Dönem</label>
+        <select id="f-aralik">
+          <option value="7">Son 7 gün</option>
+          <option value="14">Son 14 gün</option>
+          <option value="30" selected>Son 30 gün</option>
+          <option value="tum">Tüm dönem</option>
+        </select>
+      </div>
+      <div class="filtre filtre--test">
+        <label for="f-test">Veri Senaryosu (doğrulama testi)</label>
+        <select id="f-test">
+          <option value="normal" selected>Normal (canlı veri)</option>
+          <option value="bos">Boş veri</option>
+          <option value="bozuk">Bozuk veri</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Sekmeler -->
+    <nav class="sekmeler">
+      <button class="sekme aktif" id="sekme-e1" type="button">E1 · Özet / KPI</button>
+      <button class="sekme" id="sekme-e2" type="button">E2 · Trend</button>
+      <button class="sekme" id="sekme-e3" type="button">E3 · Pareto / Kırılım</button>
+      <button class="sekme" id="sekme-e4" type="button">E4 · Detay / Aksiyon</button>
+    </nav>
+
+    <!-- Icerik -->
+    <main class="icerik">
+
+      <!-- Yuklenme / bos / hata durumlari -->
+      <div class="durum-katman gizli" id="durum-yukleniyor">
+        <div class="ikon-buyuk">⏳</div>
+        <h2>Veri yükleniyor…</h2>
+        <p>Bağlı veri katmanı okunuyor.</p>
+      </div>
+      <div class="durum-katman gizli" id="durum-bos">
+        <div class="ikon-buyuk">∅</div>
+        <h2>Gösterilecek veri yok</h2>
+        <p>Bağlı kaynakta geçerli kayıt bulunamadı. Veri eklendiğinde pano otomatik dolar. (Doğrulama: boş veri senaryosu.)</p>
+      </div>
+      <div class="durum-katman hata gizli" id="durum-hata">
+        <div class="ikon-buyuk">⚠️</div>
+        <h2>Veri katmanı okunamadı</h2>
+        <p>veri-katmani.js yüklenemedi. Dosyanın index.html ile aynı klasörde olduğundan emin olun.</p>
+      </div>
+
+      <!-- Ekranlar -->
+      <div id="ekran-kabi">
+        <!-- E1 -->
+        <section class="ekran" id="ekran-e1">
+          <div class="ekran-baslik">
+            <h2>Özet · En kritik metrikler</h2>
+            <span class="aciklama">İlk bakışta okunur · seçili dönem vs önceki dönem</span>
+          </div>
+          <div id="e1-govde"></div>
+        </section>
+
+        <!-- E2 -->
+        <section class="ekran gizli" id="ekran-e2">
+          <div class="ekran-baslik">
+            <h2>Trend · Günlük OEE</h2>
+            <span class="aciklama">Çizgi grafik · renk = dönem</span>
+          </div>
+          <div class="gosterge">
+            <span class="gosterge-oge"><span class="swatch mavi"></span> Mevcut dönem</span>
+            <span class="gosterge-oge"><span class="swatch gri"></span> Önceki dönem</span>
+            <span class="gosterge-oge"><span class="swatch uyari"></span> Hedef</span>
+          </div>
+          <div class="grafik-cerceve">
+            <div class="grafik-tuval" id="e2-tuval"></div>
+          </div>
+          <div class="grafik-okuma" id="e2-okuma"></div>
+        </section>
+
+        <!-- E3 -->
+        <section class="ekran gizli" id="ekran-e3">
+          <div class="ekran-baslik">
+            <h2>Kırılım · Duruş Nedeni Pareto'su &amp; Hat Bazında OEE</h2>
+            <span class="aciklama">Sütun + kümülatif · doğru grafik seçimi</span>
+          </div>
+          <div class="grafik-satir">
+            <div class="grafik-cerceve">
+              <h3>Duruş Nedeni Pareto'su (dakika)</h3>
+              <div class="grafik-tuval" id="e3-pareto"></div>
+            </div>
+            <div class="grafik-cerceve">
+              <h3>Hat Bazında OEE</h3>
+              <div class="grafik-tuval" id="e3-hat"></div>
+            </div>
+          </div>
+          <div class="grafik-okuma" id="e3-okuma"></div>
+        </section>
+
+        <!-- E4 -->
+        <section class="ekran gizli" id="ekran-e4">
+          <div class="ekran-baslik">
+            <h2>Detay · Vardiya Kayıtları &amp; Aksiyon</h2>
+            <span class="aciklama">Yoğunluk + okunabilirlik · durum sütunları</span>
+          </div>
+          <div id="e4-govde" class="ekran"></div>
+        </section>
+      </div>
+    </main>
+
+    <!-- Alt bilgi -->
+    <footer class="alt-bilgi">
+      <span>Veri <strong>ayrık katmandan</strong> okunur (veri-katmani.js · sentetik) — koda gömülü değildir. Para birimi: ₺ · Etiketler Türkçe.</span>
+      <span>AdAstra × VALEO · Ödev #1 · S1 OEE</span>
+    </footer>
+  </div>
+
+  <!-- Once AYRIK veri katmani, sonra dashboard mantigi (inline script yok) -->
+  <script src="veri-katmani.js"></script>
+  <script src="dashboard.js"></script>
+</body>
+</html>
