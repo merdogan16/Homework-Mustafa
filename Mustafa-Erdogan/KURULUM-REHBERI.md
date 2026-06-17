@@ -55,6 +55,10 @@ otomatikleştirilemez ve uydurma kanıt cezalandırılır (Bölüm 9).
   **sürükle-bırak** ile yükleyin. (Bu repo hazırlık içindir; teslim ayrı repoyadır.)
 - **Dahil etmeyin:** şifre/anahtar, gerçek/gizli veri, gereksiz büyük dosyalar.
 
-## (Bonus) Hook / Otomasyon
-- İsterseniz bir Apps Script tetikleyicisi veya Claude Code `settings.json` hook'u
-  kurup çalıştığını kanıtlayın (+5 puan, Bölüm 9.1).
+## (Bonus) Hook / Otomasyon — KURULDU (+5 puan)
+- `bonus-hook/` altında **çalışan** bir Claude Code `PostToolUse` hook'u var:
+  `dashboard/` her düzenlendiğinde Kalıcı Talimat kurallarını (inline CSS/script yok,
+  veri gömülü değil, ayrık katman, Türkçe) otomatik denetler; ihlalde kod 2 ile **engeller**.
+- Kurulum: `bonus-hook/settings.json` içeriğini `.claude/settings.json`'a koyun.
+- Çalıştığının kanıtı (temiz=geçer / ihlal=engeller) `bonus-hook/README.md` içinde.
+- Manuel test: `python3 bonus-hook/dogrula-kurallar.py`

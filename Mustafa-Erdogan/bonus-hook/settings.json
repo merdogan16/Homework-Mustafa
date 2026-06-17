@@ -1,0 +1,16 @@
+{
+  "_aciklama": "Claude Code hook: dashboard/ altinda her Edit/Write/MultiEdit sonrasi kural denetimini calistirir. Ihlal varsa script kod 2 ile cikar; Claude Code stderr'i asistana iletir ve degisikligi engeller. Bu dosyayi projenin .claude/settings.json icine koyun.",
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"$CLAUDE_PROJECT_DIR/bonus-hook/dogrula-kurallar.py\""
+          }
+        ]
+      }
+    ]
+  }
+}

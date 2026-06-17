@@ -31,6 +31,9 @@
 Mustafa-Erdogan/
 ├─ README.md                      ← bu dosya
 ├─ KURULUM-REHBERI.md             ← Claude'da elle yapılacak adımlar (Project/Connector/turlar)
+├─ bonus-hook/                    ← (Bonus +5) kuralları otomatik dayatan Claude Code hook'u
+│  ├─ dogrula-kurallar.py         ← kural denetleyici (kod 0=geçer, 2=engeller)
+│  └─ settings.json  README.md    ← hook yapılandırması + çalıştığının kanıtı
 ├─ talimatlar/
 │  ├─ kalici-talimat.md           ← Project özel talimatları (Rule'lar, test edilebilir)
 │  └─ uretim-standardi.md         ← Skill / üretim standardı (tasarım + anatomi + grafik)

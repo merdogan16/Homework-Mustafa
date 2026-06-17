@@ -100,5 +100,7 @@ kurumsal standartta ve tekrarlanabilir** çıktı vermesi.
 - [ ] ⟦Connector ekran görüntüleri eklendi⟧ · [ ] ⟦Share linkleri README'de⟧
 - [ ] ⟦rapor.pdf eklendi⟧ · [ ] ⟦6 doğrulama senaryosu belgelendi⟧
 
-**Geliştirilecek 1 alan:** ⟦Örn. gerçek MES verisine bağlanma, mobil düzen, ya da
-Apps Script ile otomatik tetikleme (bonus).⟧
+**(Bonus +5):** Kuralları araç düzeyinde dayatan bir **Claude Code hook'u** kuruldu ve
+çalıştığı kanıtlandı (temiz=geçer / ihlal=engeller) — bkz. `bonus-hook/`.
+
+**Geliştirilecek 1 alan:** ⟦Örn. gerçek MES verisine bağlanma veya mobil/responsive düzen.⟧
