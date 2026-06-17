@@ -231,8 +231,9 @@
       m.performans, o ? o.performans : null, durumBandi(m.performans, 0.90, 0.80));
     kart("Kalite", yuzde(m.kalite), "Sağlam / Toplam üretim",
       m.kalite, o ? o.kalite : null, durumBandi(m.kalite, 0.99, 0.97));
+    // Duruş oranı: ARTIŞ kötü (tersYon) -> oran düşerse yeşil, yükselirse kırmızı
     kart("Toplam Duruş", sayi(m.durus) + " dk", sayi(m.satir) + " kayıt · " + sayi(m.uretim) + " adet üretim",
-      o ? (1 - m.durus / (m.planli || 1)) : null, o ? (1 - o.durus / (o.planli || 1)) : null, "notr-kart", true);
+      o ? (m.durus / (m.planli || 1)) : null, o ? (o.durus / (o.planli || 1)) : null, "notr-kart", true);
     kart("Tahmini Duruş Maliyeti", tl(m.maliyet), "Varsayım: " + tl(MALIYET_DK) + " / duruş dk",
       null, null, "notr-kart");
 
