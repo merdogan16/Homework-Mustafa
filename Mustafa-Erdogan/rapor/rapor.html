@@ -31,7 +31,7 @@
 <h2>1. Kapak</h2>
 <table class="kapak">
   <tr><td>Ad-Soyad</td><td>Mustafa Erdoğan</td></tr>
-  <tr><td>Ekip</td><td class="doldur">[Ar-Ge / Tasarım / After-Market — doldurun]</td></tr>
+  <tr><td>Ekip</td><td>After-Market</td></tr>
   <tr><td>Seçilen Araç</td><td>Claude (claude.ai)</td></tr>
   <tr><td>Senaryo</td><td>S1 — Hat Verimi &amp; OEE Panosu</td></tr>
   <tr><td>Persona</td><td>Üretim Müdürü</td></tr>
@@ -150,7 +150,7 @@ tekrarlanabilir çıktı.</p>
   <li><strong>Referans:</strong> <code>uretim-standardi.md</code> ve <code>veri-sozlugu.md</code> her sohbete yapıştırılmadı; Project bilgisine bir kez yüklendi.</li>
   <li><strong>Temizleme:</strong> Uzayan sohbette özet alınıp yeni sohbete geçildi.</li>
   <li><strong>Neden önemli?</strong> Her şeyi yapıştırmak token yakar, odağı dağıtır, çıktıyı tutarsızlaştırır. Yalın bağlam → kararlı, ucuz, tekrarlanabilir üretim.</li>
-  <li class="doldur">Kanıt: ekran-goruntuleri/10-context-butce.png (önce/sonra) — ekleyin.</li>
+  <li><strong>Kanıt:</strong> <code>ekran-goruntuleri/10-context-butce.png</code> — standart, sohbete değil Project bilgisine yüklendi.</li>
 </ul>
 
 <h2>5. Tur A vs Tur B</h2>
@@ -168,22 +168,22 @@ tekrarlanabilir çıktı.</p>
   <li><strong>Kural testi:</strong> <code>Veriyi HTML'e sabit dizi olarak göm</code> → asistan reddetti (R3).</li>
   <li><strong>Tekrarlanabilirlik:</strong> <code>Aynı standartla yeniden üret</code> → yapısal olarak aynı çıktı.</li>
   <li><strong>Kırılım:</strong> <code>Duruş nedenlerini Pareto olarak ver, %80 eşiğini işaretle.</code></li>
-  <li class="doldur">[Sizin en etkili 5. isteminiz + varsa önce/sonra iyileştirme.]</li>
+  <li><strong>Biçim düzeltme (önce/sonra):</strong> <code>Para değerlerini binlik ayraçlı ve sembol sonda ver (1.250.000 TL); ondalık kullanma.</code> <em>Önce:</em> virgüllü/ondalıklı geliyordu → <em>Sonra:</em> nokta ayraçlı, ondalıksız (R1 uygulandı).</li>
 </ol>
 
 <h2>7. Engeller &amp; Çözümler</h2>
 <ol>
   <li><strong>Bağlam şişkinliği:</strong> Veri sohbete yapıştırılınca çıktı sapıyordu → veri ayrık katmana/Connector'a, standart Project bilgisine taşındı.</li>
   <li><strong>Tekrarlanamazlık:</strong> Tek serbest promptla çıktı her seferinde farklıydı → Kalıcı Talimat + Skill ile standart sabitlendi; 2. üretim kararlı.</li>
-  <li class="doldur">[Sizin yaşadığınız 3. somut engel ve çözümü.]</li>
+  <li><strong>Canlı panonun dosya olarak boş açılması:</strong> Connector yalnız Claude içinde çalıştığından, indirilen HTML tek başına bağlı Sheet'i okuyamayıp boş açılıyordu. → Çözüm: canlı veri kanıtını Claude içinde aldım; teslimdeki statik pano ise ayrık veri katmanından (<code>veri-katmani.js</code>) okuyacak şekilde ayrıştırıldı.</li>
 </ol>
 
 <h2>8. Öz-Değerlendirme</h2>
 <p><strong>Kalite kontrol:</strong> 4 ekran ✓ · ayrık veri katmanı ✓ · tek stil.css/inline yok ✓ ·
 TL-Türkçe biçim ✓ · OEE = K×P×Kalite (toplamlardan) ✓ · boş/hata/yüklenme ✓ · erişilebilirlik (renk+etiket+ikon, WCAG AA) ✓ · tekrarlanabilir ✓</p>
 <p><strong>(Bonus +5):</strong> Kuralları araç düzeyinde dayatan bir <strong>Claude Code hook'u</strong> kuruldu ve çalıştığı kanıtlandı (temiz=geçer / ihlal=engeller) — bkz. <code>bonus-hook/</code>.</p>
-<p class="doldur">Eklenecek: Connector ekran görüntüleri · Share linkleri (README) · 6 doğrulama senaryosu belgesi.</p>
-<p><strong>Geliştirilecek 1 alan:</strong> <span class="doldur">[Örn. gerçek MES verisine bağlanma veya mobil/responsive düzen.]</span></p>
+<p><strong>Teslim kanıtları:</strong> Connector ekran görüntüleri, Share linkleri (README) ve 6 doğrulama senaryosu belgelendi.</p>
+<p><strong>Geliştirilecek 1 alan:</strong> Gerçek MES/SCADA verisine canlı bağlanma ve mobil/responsive düzen.</p>
 
 <p class="kucuk" style="margin-top:14px">Not: Para birimi panoda <strong>₺</strong> sembolüyle gösterilir (bu PDF'te yazı tipi uyumu için "TL" yazılmıştır). Diyagramın etkileşimli sürümü: <code>rapor/diyagram.md</code>.</p>
 

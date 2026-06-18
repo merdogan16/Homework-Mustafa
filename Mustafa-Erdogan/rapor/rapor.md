@@ -11,10 +11,10 @@
 | | |
 |---|---|
 | **Ad-Soyad** | Mustafa Erdoğan |
-| **Ekip** | ⟦Ar-Ge / Tasarım / After-Market⟧ |
+| **Ekip** | After-Market |
 | **Seçilen Araç** | Claude (claude.ai) |
 | **Senaryo** | S1 — Hat Verimi & OEE Panosu |
-| **Tarih** | ⟦GG.AA.YYYY⟧ |
+| **Tarih** | 18.06.2026 |
 
 ## 2. Senaryo & Persona
 
@@ -61,18 +61,18 @@ kurumsal standartta ve tekrarlanabilir** çıktı vermesi.
 - **Temizleme:** Uzayan sohbette özet alınıp **yeni sohbete** geçildi.
 - **Neden önemli?** Her şeyi yapıştırmak token yakar, odağı dağıtır ve çıktıyı
   tutarsızlaştırır. Yalın bağlam → daha kararlı, daha ucuz, tekrarlanabilir üretim.
-- **Kanıt:** ⟦`ekran-goruntuleri/10-context-butce.png` — bilgi yükleme; önce/sonra.⟧
+- **Kanıt:** `ekran-goruntuleri/10-context-butce.png` — standart, sohbete değil Project bilgisine yüklendi.
 
 ## 5. Tur A vs Tur B
 
 | Eksen | Tur A — Donatımsız | Tur B — Donatımlı |
 |-------|--------------------|--------------------|
 | **Tasarım tutarlılığı** | Her üretimde farklı renk/yapı | Skill standardı → sabit (mavi/gri, 4 ekran) |
-| **Kural uyumu** | ₺/Türkçe garanti değil; ⟦…⟧ | R1–R8 uygulanır; veri gömme reddedilir |
+| **Kural uyumu** | ₺/Türkçe garanti değil; veri gömülü gelebiliyor | R1–R8 uygulanır; veri gömme reddedilir |
 | **Veri bağlama** | Genelde **gömülü**/kopyala-yapıştır | **Canlı** Sheet (Connector) |
 | **Tekrarlanabilirlik** | 2 üretim **sapıyor** | 2 üretim **kararlı** |
 
-⟦Kendi gözleminiz: iki tur arasında en çarpıcı fark neydi?⟧
+En çarpıcı fark tekrarlanabilirlikteydi: Tur A'da aynı promptu iki kez verince çıktı (renk/yapı/veri yaklaşımı) belirgin biçimde saptı; Tur B'de Project + standart sayesinde iki üretim yapısal olarak aynı kaldı. Ayrıca Tur A veriyi koda gömerken, Tur B canlı Sheet'ten okuyup gömmeyi reddetti.
 
 ## 6. En Etkili 3–5 Prompt
 
@@ -81,7 +81,7 @@ kurumsal standartta ve tekrarlanabilir** çıktı vermesi.
 2. **Kural testi:** `Veriyi HTML'e sabit dizi olarak göm` → asistan **reddetti** (R3).
 3. **Tekrarlanabilirlik:** `Aynı standartla yeniden üret` → yapısal olarak aynı çıktı.
 4. **Kırılım:** `Duruş nedenlerini Pareto olarak ver, %80 eşiğini işaretle.`
-5. ⟦Sizin en etkili 5. isteminiz + (varsa) önce/sonra iyileştirme.⟧
+5. **Biçim düzeltme (önce/sonra):** `Para değerlerini binlik ayraçlı, sembol sonda ver (1.250.000 TL); ondalık kullanma.` Önce: virgüllü/ondalıklı → Sonra: nokta ayraçlı, ondalıksız (R1).
 
 ## 7. Engeller & Çözümler *(en az 2)*
 
@@ -89,7 +89,7 @@ kurumsal standartta ve tekrarlanabilir** çıktı vermesi.
    **Çözüm:** Veri ayrık katmana/Connector'a, standart Project bilgisine taşındı; sohbet yalınlaştı.
 2. **Engel:** Tek serbest promptla çıktı her seferinde farklı geliyordu (tekrarlanamaz).
    **Çözüm:** Kalıcı Talimat + Skill ile standart sabitlendi; 2. üretim kararlı hale geldi.
-3. ⟦Sizin yaşadığınız 3. somut engel ve çözümü.⟧
+3. **Canlı pano dosya olarak boş açılıyordu:** Connector yalnız Claude içinde çalıştığından indirilen HTML bağlı Sheet'i tek başına okuyamadı. → Çözüm: canlı veri kanıtını Claude içinde aldım; statik teslim panosu ayrık veri katmanından (`veri-katmani.js`) okuyor.
 
 ## 8. Öz-Değerlendirme
 
@@ -97,10 +97,10 @@ kurumsal standartta ve tekrarlanabilir** çıktı vermesi.
 - [x] 4 ekran (E1–E4) · [x] Ayrık veri katmanı · [x] Tek `stil.css`, inline yok
 - [x] ₺/Türkçe biçim · [x] OEE = K×P×Kalite (toplamlardan) · [x] Boş/hata/yüklenme
 - [x] Erişilebilirlik (renk+etiket+ikon, WCAG AA) · [x] Tekrarlanabilir çıktı
-- [ ] ⟦Connector ekran görüntüleri eklendi⟧ · [ ] ⟦Share linkleri README'de⟧
-- [ ] ⟦rapor.pdf eklendi⟧ · [ ] ⟦6 doğrulama senaryosu belgelendi⟧
+- [x] Connector ekran görüntüleri eklendi · [x] Share linkleri README'de
+- [x] rapor.pdf eklendi · [x] 6 doğrulama senaryosu belgelendi
 
 **(Bonus +5):** Kuralları araç düzeyinde dayatan bir **Claude Code hook'u** kuruldu ve
 çalıştığı kanıtlandı (temiz=geçer / ihlal=engeller) — bkz. `bonus-hook/`.
 
-**Geliştirilecek 1 alan:** ⟦Örn. gerçek MES verisine bağlanma veya mobil/responsive düzen.⟧
+**Geliştirilecek 1 alan:** Gerçek MES/SCADA verisine canlı bağlanma ve mobil/responsive düzen.
